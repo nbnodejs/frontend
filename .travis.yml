@@ -8,3 +8,15 @@ before_install:
 script:
   - docker run -e CI=true nbnodejs/frontend-react npm run test -- --coverage
 
+deploy:
+  provider: elasticbeanstalk
+  region: "us-east-2"
+  app: "frontend-react"
+  env: "FrontendReact-env"
+  bucket_name: "elasticbeanstalk-us-east-2-804521895129"
+  bucket_path: "frontend-react"
+  on:
+    branch: master
+
+    access_key_id: $ACWS_ACESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
